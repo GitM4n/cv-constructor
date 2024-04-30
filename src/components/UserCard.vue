@@ -17,6 +17,7 @@ const user = userService.user
 
 onMounted(() => {
     user.value = userService.user.value
+    console.log(user.value.contacts[0].icon)
 })
 
 </script>
@@ -39,9 +40,9 @@ onMounted(() => {
                     :class="contact.title"
                   
                >
-                    <div class="icon">
-                        <i :class="contact.icon"></i>
-                    </div>
+                  
+                   <img class="icon" :src="contact.icon" alt="icon">
+                    
                     <div class="desc">
                         <p :class="contact.title+'_title title'"> {{contact.title}}</p>
                         <edit-block 
@@ -71,15 +72,14 @@ onMounted(() => {
 .user-card{
     display: flex;
     position: relative;
-    width: 400px;
-    padding: 50px 5px 0 5px;
-    font-family: 'Ubuntu';
+    padding: 50px 5px 10px 5px;
+
     
 }
 
 .user-card__before-color{
     position: absolute;
-    width: 40px;
+    width: 50px;
     padding: 0 5px;
     height: 100%;
     top: 0;
@@ -133,7 +133,10 @@ onMounted(() => {
     top: 0;
     left: 0;
     z-index: 1;
-    padding: 0 7px;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+   
 }
 
 
@@ -141,6 +144,7 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     padding: 0 10px;
+    font-size: 1.2rem;
 }
 
 .desc .title{
@@ -150,6 +154,8 @@ onMounted(() => {
 .desc .value{
     font-style: oblique;
 }
+
+
 
 .input{
     border: none;

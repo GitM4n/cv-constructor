@@ -121,12 +121,10 @@ onMounted(() => {
 }
 
 .user__fullname{
-    font-size: 30px;
+    font-size: 2rem;
 }
 
-.user__specialization{
-    font-size: 24px;
-}
+
 
 
 .user{
@@ -152,7 +150,7 @@ onMounted(() => {
 .user__specialization{
     position: relative;
     letter-spacing: 2px;
-    font-size: 12px;
+    font-size: 0.8rem;
     background-color: var(--white);
     text-wrap: nowrap;
     padding:0 5px;

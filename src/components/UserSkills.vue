@@ -21,7 +21,7 @@ const inAdd = ref<boolean>(false)
 
 const skill = ref<ISkill>({
     name: '',
-    level: 1
+    level: 0
 })
 
 
@@ -33,7 +33,7 @@ const saveSkill = (name: string, level:skillLevel, title:skillTitle):void => {
     userService.saveSkill(name, level, title)
     skill.value = {
         name: '',
-        level: 1
+        level: 0
     }
 }
 
@@ -42,7 +42,7 @@ const cancelEdit = () => {
     inAdd.value = false
     skill.value = {
         name: '',
-        level: 1
+        level: 0
     }
 }
 
@@ -62,7 +62,7 @@ const cancelEdit = () => {
                     <span class="skill__name">{{skill.name}}</span>
                     <progressbar class="progressbar" 
                                 v-if="props.progressbar"
-                                :value="20 * skill.level"></progressbar>
+                                :value="20 * (skill.level)"></progressbar>
                     <Button class="remove-skill__btn" label="x" 
                                 :severity="'danger'"
                                 @click="userService.removeSkill(idx, skills.title)"/>
@@ -76,7 +76,7 @@ const cancelEdit = () => {
                             v-if="props.progressbar"
                             aria-label="Level"
                             :step="1" 
-                            :min="1"
+                            :min="0"
                             :max="5"
                             v-model="skill.level"/>
                     <Button class="cancel-skill__btn" 
@@ -87,7 +87,7 @@ const cancelEdit = () => {
                 <Button class="add-skills__btn" 
                     :label="inAdd ? 'Save' : 'Add Skill'"
                     @click="inAdd ? saveSkill(skill.name, skill.level, skills.title) : addSkill()"
-                    :disabled="props.progressbar ? inAdd && (skill.name.length < 3 || skill.level === 1) : inAdd && skill.name.length < 3 " />
+                    :disabled="props.progressbar ? inAdd && (skill.name.length < 3 || skill.level === 0) : inAdd && skill.name.length < 3 " />
             </div>
         </div>
     </div>
@@ -110,11 +110,11 @@ const cancelEdit = () => {
     margin-bottom: 10px;
 }
 
-.add-skills{
+.add-skills__btn{
     visibility: hidden;
 }
 
-.user-skills__inner:hover .add-skills{
+.user-skills__inner:hover .add-skills__btn{
     visibility: visible;
 }
 
@@ -122,7 +122,7 @@ const cancelEdit = () => {
 .add-skills__content{
     position: relative;
     display: grid;
-    grid-template-columns: 0.3fr 1fr 40px;
+    grid-template-columns: 0.7fr 1fr 40px;
     gap: 5px;
     align-items: center;
 }
@@ -131,17 +131,14 @@ const cancelEdit = () => {
     display: flex;
 }
 
-.add-skills__content:hover 
 
 
-.skill__name{
-    font-style: oblique;
-}
+
 
 
 .progressbar,
 .add-skills__slider{
-    height: 6px;
+    height: 8px;
 }
 
 .remove-skill__btn{
@@ -185,6 +182,12 @@ const cancelEdit = () => {
 .other-skills .skill__name{
     font-style: normal;
     font-weight: 500;
+}
+
+
+.skill__name{
+    font-style: oblique;
+    font-size: 1.2rem;
 }
 
 

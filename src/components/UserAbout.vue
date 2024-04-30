@@ -62,9 +62,10 @@ onMounted(()=>{
 }
 
 .user-about__text{
-    font-family: 'Ubuntu';
+   
     font-style: oblique;
-    line-height: 24px;
+
+    font-size: 1.2rem;
     text-wrap: balance;
     
 }

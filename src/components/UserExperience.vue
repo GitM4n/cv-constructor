@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import EditBlock from './EditBlock.vue';
+import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
+import InputMask from 'primevue/inputmask';
+import Textarea from 'primevue/textarea';
 import type {IExperience} from '../interfaces/index'
 import { useUserService } from '../composables/useUserService';
 
@@ -12,17 +14,18 @@ const user = userService.user
 const experienceList = ref<IExperience[]>(user.value.experience)
 
 
-const saveData = (exp: IExperience, idx: number) =>{
-        exp.isEdit = false
 
+
+const saveData = (exp: IExperience, idx: number) =>{
+         exp.isEdit = false
         if(exp.place.length > 40) exp.place = exp.place.slice(0, 40)
 
-        userService.saveExperience(exp, idx)
-
+        userService.saveExperience(exp, idx)      
 }
 
 onMounted(() => {
     console.log(user.value.experience)
+    console.log(experienceList.value)
 })
 
 </script>
@@ -31,50 +34,47 @@ onMounted(() => {
     <div class="user-exp">
         <div class="user-exp__inner">
             <h2 class="user-exp__title">EXPERIENCE</h2>
-            <ul class="user-exp__list">
-                <li class="user-exp__item" v-for="exp, idx in experienceList" :key="idx">
-                      <edit-block
-                                   @save="saveData(exp, idx)"
-                                   :edit="exp.isEdit"
-                                   @edit="exp.isEdit = true"
-                                    >
-                          <template #default>
-                            <div class="user-exp__content">
-                                <h3 class="user-exp__name" :contenteditable="exp.isEdit" 
-                                                            @input="exp.title = ($event.target as HTMLElement).innerText">{{exp.title}}</h3>
+            <ul class="user-exp__list" v-if="experienceList.length > 0">
+                <li class="user-exp__item" :class="exp.isEdit ? 'is-edit' : ''" v-for="exp, idx in experienceList" :key="idx" >
+                     
+                            <div class="user-exp__content" @click.stop="exp.isEdit = true">
+                                <InputText class="input" placeholder="Job title" maxlength="40" v-model="exp.title" v-if="exp.isEdit" />
+                                <h3 class="user-exp__name" v-else>{{exp.title}}</h3>
+                                
 
-                            
+                                <hr v-if="exp.isEdit">
 
                                 <div class="user-exp__place">
-                                    <p class="user-exp__place_value" :contenteditable="exp.isEdit" 
-                                                                         @input="exp.place = ($event.target as HTMLElement).innerText">{{exp.place}}</p>
+                                    <InputText class="input" placeholder="work place" maxlength="70" v-model="exp.place" v-if="exp.isEdit" />
+                                    <p class="user-exp__place_value" v-else>{{exp.place}}</p>                      
+
                                     <div class="user-exp__period">
                                         <div class="user-exp__start">
-                                            <InputText class="input"  v-model="exp.startDate" v-if="exp.isEdit"/>
+                                            <InputMask id="basic" v-model="exp.startDate" placeholder="99/99/9999" mask="99/99/9999" slotChar="mm/dd/yyyy"  v-if="exp.isEdit" />
                                             <span class="user-exp__start_value" v-else>{{exp.startDate}}</span>
                                         </div>
                                         -
                                         <div class="user-exp__end">
-                                            <InputText class="input"  v-model="exp.endDate" v-if="exp.isEdit"/>
+                                            <InputMask id="basic" v-model="exp.endDate" placeholder="99/99/9999" mask="99/99/9999" slotChar="mm/dd/yyyy" v-if="exp.isEdit" />
                                             <span class="user-exp__end_value" v-else>{{exp.endDate}}</span>
                                         </div>
                                     </div>
                                 </div>
 
+                                <hr v-if="exp.isEdit">
                               
+                                <Textarea v-model="exp.description" v-if="exp.isEdit" class="input" rows="5" cols="30" maxlength="500" />
+                                <p class="user-exp__description" v-else>{{exp.description}}</p>
 
-                                <p class="user-exp__description" :contenteditable="exp.isEdit"  
-                                                                @input="exp.description = ($event.target as HTMLElement).innerText">{{exp.description}}</p>
+                               
                             </div>
-                          </template>
-                          <template #icon>
-                              <i class="pi pi-pen-to-square"></i>
-                          </template>
-                      </edit-block>
-                 
+                            <i class="icon pi pi-pen-to-square"></i>
+                            <Button v-if="exp.isEdit" label="Save" @click="saveData(exp, idx)"></Button>
+                          
                 </li>
-
+               
             </ul>
+            <Button class="add-experience" label="ADD EXPERIENCE" @click="userService.addExperience">Add experience</Button>
         </div>
 
     </div>
@@ -90,9 +90,13 @@ onMounted(() => {
     margin-bottom: 30px;
 }
 
+.user-exp__item{
+    position: relative;
+}
 
 .user-exp__name{
     letter-spacing: 2px;
+    font-size: 1.5rem;
 }
 
 .input{
@@ -115,7 +119,7 @@ onMounted(() => {
 .user-exp__place input, 
 .user-exp__place p{
     font-style: oblique;
-    font-size: 14px;
+  
 }
 
 .user-exp__period{
@@ -131,8 +135,52 @@ onMounted(() => {
     gap: 10px;
 }
 
+.user-exp__description{
+    font-size: 1.2rem;
+}   
+
 hr{
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
+.add-experience{
+    display: none;
+    margin-top: 40px;
+    padding: 8px 12px;
+}
+
+.right-side:hover .add-experience{
+    display: block;
+}
+
+.icon{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.input{
+    border: none;
+    outline: none;
+
+}
+
+.input:focus{
+    border: 1px solid var(--primary);
+}
+.user-exp__item:not(.is-edit):hover span,
+.user-exp__item:not(.is-edit):hover p,
+.user-exp__item:not(.is-edit):hover h3 {
+    color:rgba(var(--dark-rgb), 0.2);
+}
+
+.user-exp__item:not(.is-edit):hover{
+    cursor: pointer;
+}
+
+.user-exp__item:not(.is-edit):hover .icon{
+    display: block;
+}
 </style>

@@ -1,4 +1,6 @@
-export type skillLevel =  1 | 2 | 3 | 4 | 5
+import { Component } from "vue"
+
+export type skillLevel =  0 | 1 | 2 | 3 | 4 | 5
 export type userTitle = 'username' | 'specialization'
 export type contactTitle = 'Phone' | 'Mail' | 'Github' | 'Area'
 export type skillTitle = 'Skills' | 'Languages' | 'Other Skills'
@@ -28,7 +30,7 @@ export interface ISkill {
 export interface IContact{
     title:contactTitle,
     text:string,
-    icon:string,
+    icon: string,
     isEdit:boolean
 }
 

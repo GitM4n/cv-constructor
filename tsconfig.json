@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/components/UserNameSpecvue"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/components/UserNameSpecvue", "src/assets/icons/githubIcon.svg", "src/assets/icons/markerIcon.svg", "src/assets/icons/phoneIcon.svg"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

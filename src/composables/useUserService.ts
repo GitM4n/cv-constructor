@@ -43,25 +43,25 @@ const templateUserData = {
         {
             title: 'Phone',
             text: '+7 999 999 99 99',
-            icon: 'pi pi-phone',
+            icon: '/src/assets/icons/phoneIcon.png',
             isEdit: false
         },
         {
             title: 'Mail',
             text: 'H8Q2H@example.com',
-            icon: 'pi pi-at',
+            icon: '/src/assets/icons/emailIcon.png',
             isEdit: false
         },
         {
             title: 'Github',
             text: 'https://github.com/GitM4n',
-            icon: 'pi pi-github',
+            icon: '/src/assets/icons/githubIcon.png',
             isEdit: false
         },
         {
             title: 'Area',
             text: 'Russia, St.Petersburg',
-            icon: 'pi pi-map-marker',
+            icon: '/src/assets/icons/markerIcon.png',
             isEdit: false
         }
     ],
@@ -134,10 +134,21 @@ export const useUserService = () => {
     }
 
     const saveExperience = (exp:IExperience, idx:number) => {
+
         user.value.experience[idx] = exp
-        console.log(user.value.experience)
-        console.log(exp)
+               
         sessionStorage.setItem('user', JSON.stringify(user.value))
+    }
+
+    const addExperience = () => {
+        user.value.experience.push( {
+            title: '',
+            startDate:'',
+            endDate: '',
+            place: '',
+            description: ``,
+            isEdit: true
+        })
     }
 
 
@@ -152,6 +163,7 @@ export const useUserService = () => {
         saveSkill,
         removeSkill,
         saveContacts,
-        saveExperience
+        saveExperience,
+        addExperience
     }
 }
