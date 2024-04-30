@@ -41,7 +41,7 @@ onMounted(() => {
                   
                >
                   
-                   <img class="icon" :src="'src/assets/icons/'+contact.icon" alt="icon">
+                   <img class="icon" :src="contact.icon" alt="icon">
                     
                     <div class="desc">
                         <p :class="contact.title+'_title title'"> {{contact.title}}</p>

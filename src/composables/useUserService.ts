@@ -44,25 +44,25 @@ const templateUserData = {
         {
             title: 'Phone',
             text: '+7 999 999 99 99',
-            icon: 'phoneIcon.png',
+            icon: new URL(`../assets/icons/phoneIcon.png`, import.meta.url).href,
             isEdit: false
         },
         {
             title: 'Mail',
             text: 'H8Q2H@example.com',
-            icon: 'emailIcon.png',
+            icon: new URL(`../assets/icons/emailIcon.png`, import.meta.url).href,
             isEdit: false
         },
         {
             title: 'Github',
             text: 'https://github.com/GitM4n',
-            icon: 'githubIcon.png',
+            icon: new URL(`../assets/icons/githubIcon.png`, import.meta.url).href,
             isEdit: false
         },
         {
             title: 'Area',
             text: 'Russia, St.Petersburg',
-            icon: 'markerIcon.png',
+            icon: new URL(`../assets/icons/markerIcon.png`, import.meta.url).href ,
             isEdit: false
         }
     ],
