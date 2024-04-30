@@ -17,7 +17,7 @@ const user = userService.user
 
 onMounted(() => {
     user.value = userService.user.value
-    console.log(user.value.contacts[0].icon)
+   
 })
 
 </script>
@@ -41,7 +41,7 @@ onMounted(() => {
                   
                >
                   
-                   <img class="icon" :src="'src/assets/icons/'+contact.icon" alt="icon">
+                   <img class="icon" :src="'icons/'+contact.icon" alt="icon">
                     
                     <div class="desc">
                         <p :class="contact.title+'_title title'"> {{contact.title}}</p>
