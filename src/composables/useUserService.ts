@@ -9,6 +9,8 @@ import type {
 
 
 
+
+
 const templateUserData = {
     name: 'Your Name',
     specialization: 'Your specialization',
@@ -44,25 +46,25 @@ const templateUserData = {
         {
             title: 'Phone',
             text: '+7 999 999 99 99',
-            icon: new URL(`../icons/phoneIcon.png`, import.meta.url).href,
+            icon: new URL(`../assets/phoneIcon.png`, import.meta.url).href,
             isEdit: false
         },
         {
             title: 'Mail',
             text: 'H8Q2H@example.com',
-            icon: new URL(`../icons/emailIcon.png`, import.meta.url).href,
+            icon: new URL(`../assets/emailIcon.png`, import.meta.url).href,
             isEdit: false
         },
         {
             title: 'Github',
             text: 'https://github.com/GitM4n',
-            icon: new URL(`../icons/githubIcon.png`, import.meta.url).href,
+            icon: new URL(`../assets/githubIcon.png`, import.meta.url).href,
             isEdit: false
         },
         {
             title: 'Area',
             text: 'Russia, St.Petersburg',
-            icon: new URL(`../icons/markerIcon.png`, import.meta.url).href ,
+            icon: new URL(`../assets/markerIcon.png`, import.meta.url).href ,
             isEdit: false
         }
     ],
