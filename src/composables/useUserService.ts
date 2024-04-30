@@ -7,6 +7,12 @@ import type {
     IExperience
 } from '../interfaces'
 
+import emailIcon from '/src/assets/icons/emailIcon.png'
+import githubIcon from '/src/assets/icons/githubIcon.png'
+import markerIcon from '/src/assets/icons/markerIcon.png'
+import phoneIcon from '/src/assets/icons/phoneIcon.png'
+
+
 
 const templateUserData = {
     name: 'Your Name',
@@ -43,25 +49,25 @@ const templateUserData = {
         {
             title: 'Phone',
             text: '+7 999 999 99 99',
-            icon: 'phoneIcon.png',
+            icon: phoneIcon,
             isEdit: false
         },
         {
             title: 'Mail',
             text: 'H8Q2H@example.com',
-            icon: 'emailIcon.png',
+            icon: emailIcon,
             isEdit: false
         },
         {
             title: 'Github',
             text: 'https://github.com/GitM4n',
-            icon: 'githubIcon.png',
+            icon: githubIcon,
             isEdit: false
         },
         {
             title: 'Area',
             text: 'Russia, St.Petersburg',
-            icon: 'markerIcon.png',
+            icon: markerIcon,
             isEdit: false
         }
     ],
