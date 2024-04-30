@@ -7,10 +7,10 @@ import type {
     IExperience
 } from '../interfaces'
 
-import emailIcon from '/src/assets/icons/emailIcon.png'
-import githubIcon from '/src/assets/icons/githubIcon.png'
-import markerIcon from '/src/assets/icons/markerIcon.png'
-import phoneIcon from '/src/assets/icons/phoneIcon.png'
+import emailIcon from '../assets/icons/emailIcon.png'
+import githubIcon from '../assets/icons/githubIcon.png'
+import markerIcon from '../assets/icons/markerIcon.png'
+import phoneIcon from '../assets/icons/phoneIcon.png'
 
 
 
