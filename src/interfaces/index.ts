@@ -1,4 +1,4 @@
-import { Component } from "vue"
+
 
 export type skillLevel =  0 | 1 | 2 | 3 | 4 | 5
 export type userTitle = 'username' | 'specialization'
