@@ -9,7 +9,10 @@ import type {
 
 
 
-
+import emailIcon from '@/assets/emailIcon.png'
+import githubIcon from '@/assets/githubIcon.png'
+import markerIcon from '@/assets/markerIcon.png'
+import phoneIcon from '@/assets/phoneIcon.png'
 
 const templateUserData = {
     name: 'Your Name',
@@ -46,25 +49,25 @@ const templateUserData = {
         {
             title: 'Phone',
             text: '+7 999 999 99 99',
-            icon: new URL(`../assets/phoneIcon.png`, import.meta.url).href,
+            icon: phoneIcon,
             isEdit: false
         },
         {
             title: 'Mail',
             text: 'H8Q2H@example.com',
-            icon: new URL(`../assets/emailIcon.png`, import.meta.url).href,
+            icon: emailIcon,
             isEdit: false
         },
         {
             title: 'Github',
             text: 'https://github.com/GitM4n',
-            icon: new URL(`../assets/githubIcon.png`, import.meta.url).href,
+            icon: githubIcon,
             isEdit: false
         },
         {
             title: 'Area',
             text: 'Russia, St.Petersburg',
-            icon: new URL(`../assets/markerIcon.png`, import.meta.url).href ,
+            icon: markerIcon,
             isEdit: false
         }
     ],
