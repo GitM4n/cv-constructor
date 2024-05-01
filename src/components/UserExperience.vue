@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import InputMask from 'primevue/inputmask';
@@ -23,10 +23,7 @@ const saveData = (exp: IExperience, idx: number) =>{
         userService.saveExperience(exp, idx)      
 }
 
-onMounted(() => {
-    console.log(user.value.experience)
-    console.log(experienceList.value)
-})
+
 
 </script>
 
@@ -63,7 +60,7 @@ onMounted(() => {
 
                                 <hr v-if="exp.isEdit">
                               
-                                <Textarea v-model="exp.description" v-if="exp.isEdit" class="input" rows="5" cols="30" maxlength="500" />
+                                <Textarea v-model="exp.description" v-if="exp.isEdit" class="input" rows="5" cols="30" maxlength="500" placeholder="Job description"/>
                                 <p class="user-exp__description" v-else>{{exp.description}}</p>
 
                                
@@ -90,6 +87,11 @@ onMounted(() => {
     margin-bottom: 30px;
 }
 
+.user-exp__list{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
 .user-exp__item{
     position: relative;
 }

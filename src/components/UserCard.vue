@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import EditBlock from './EditBlock.vue';
-
+import FileUpload from 'primevue/fileupload';
 import InputText from 'primevue/inputtext';
 import UserNameSpec from './UserNameSpec.vue';
 import { useUserService } from '../composables/useUserService';
@@ -9,7 +9,6 @@ import { useUserService } from '../composables/useUserService';
 const userService = useUserService()
 
 const user = userService.user
-
 
 
 onMounted(() => {
@@ -25,8 +24,16 @@ onMounted(() => {
         <div class="user-card__inner">
             <div class="user-card__avatar_block">
                 <div class="user-card__avatar">
-                    <img src="../assets/avatar-none.jpg" alt="avatar-none">
+                    <img :src="user.avatar" alt="avatar-none" id="avatar">
                 </div>
+                <FileUpload 
+
+                            mode="basic" 
+                            :class="'custom-upload'"
+                            accept="image/*" 
+                            :maxFileSize="1000000" 
+                            @select="userService.saveAvatar($event.files[0])"
+                            >Change</FileUpload>
             </div>
             <UserNameSpec class="isMobile"/>
             <ul class="user-card__contacts">
@@ -70,6 +77,11 @@ onMounted(() => {
     
 }
 
+.user-card__avatar_block:hover :deep(.custom-upload){
+    visibility: visible;
+    opacity: 1;
+}
+
 .user-card__before-color{
     position: absolute;
     width: 50px;
@@ -91,9 +103,11 @@ onMounted(() => {
 
 .user-card__avatar_block{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 0 1 50%;
+    gap: 20px;
 }
 
 .user-card__avatar{
@@ -106,6 +120,18 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    outline: 5px solid var(--primary);
+}
+
+:deep(.custom-upload *){
+    color: var(--white);
+}
+
+:deep(.custom-upload){
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease-out;
+    padding: 3px 5px;
 }
 
 .user-card__contacts{

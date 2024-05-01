@@ -8,6 +8,7 @@ export type skillTitle = 'Skills' | 'Languages' | 'Other Skills'
 export interface IUser {
     name: string,
     specialization:string,
+    avatar:string,
     skills:{
         [key in skillTitle]:{
             title:skillTitle,

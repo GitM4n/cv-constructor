@@ -110,8 +110,6 @@ onMounted(() => {
 }
 
 .user__fullname{
-    word-break:break-all;
-    text-transform: uppercase;
     letter-spacing: 2px;
 }
 .user__fullname,

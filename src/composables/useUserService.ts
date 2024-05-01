@@ -13,10 +13,12 @@ import emailIcon from '@/icons/emailIcon.png'
 import githubIcon from '@/icons/githubIcon.png'
 import markerIcon from '@/icons/markerIcon.png'
 import phoneIcon from '@/icons/phoneIcon.png'
+import standardAvatar from '@/assets/avatar-none.jpg'
 
 const templateUserData = {
     name: 'Your Name',
     specialization: 'Your specialization',
+    avatar: standardAvatar,
     skills:{
         'Skills':{
             title:'Skills',
@@ -80,6 +82,15 @@ const templateUserData = {
             description: `Work Description. Lorem 
             ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
             isEdit: false
+        },
+          {
+            title: 'Work Title 2',
+            startDate:'01/01/2020',
+            endDate: '01/01/2021',
+            place: 'Work Place 2',
+            description: `Work Description 2. Lorem 
+            ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+            isEdit: false
         }
     ]
 } as IUser
@@ -89,8 +100,6 @@ const user = ref<IUser> (sessionStorage.getItem('user') ? JSON.parse(sessionStor
 
 
 export const useUserService = () => {
-
-
 
 
     const setUserNameOrSpecialization = (value:string, title:'username' | 'specialization') => {
@@ -139,13 +148,30 @@ export const useUserService = () => {
         sessionStorage.setItem('user', JSON.stringify(user.value))
     }
 
+
     const saveExperience = (exp:IExperience, idx:number) => {
 
         user.value.experience[idx] = exp
-               
+        _areAllStringsEmpty(exp) ? user.value.experience.splice(idx, 1) : undefined
         sessionStorage.setItem('user', JSON.stringify(user.value))
     }
 
+
+    const saveAvatar = (file:File) => {
+        const reader = new FileReader()
+        reader.onload = () => {
+            user.value.avatar = reader.result as string
+            console.log(user.value.avatar)
+           
+        }
+
+        reader.readAsDataURL(file)
+
+       
+        sessionStorage.setItem('user', JSON.stringify(user.value))
+    }
+
+  
     const addExperience = () => {
         user.value.experience.push( {
             title: '',
@@ -155,6 +181,24 @@ export const useUserService = () => {
             description: ``,
             isEdit: true
         })
+    }
+
+
+
+
+
+    
+    function _areAllStringsEmpty(obj: IExperience): boolean {
+        for (let key in obj) {
+            if (typeof obj[key as keyof IExperience] === 'string') {
+
+                const value = obj[key as keyof IExperience] as string;
+                if (value.trim() !== '') {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 
@@ -170,6 +214,7 @@ export const useUserService = () => {
         removeSkill,
         saveContacts,
         saveExperience,
-        addExperience
+        addExperience,
+        saveAvatar
     }
 }
