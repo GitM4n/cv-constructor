@@ -9,10 +9,10 @@ import type {
 
 
 
-import emailIcon from '@/assets/emailIcon.png'
-import githubIcon from '@/assets/githubIcon.png'
-import markerIcon from '@/assets/markerIcon.png'
-import phoneIcon from '@/assets/phoneIcon.png'
+import emailIcon from '../assets/emailIcon.png'
+import githubIcon from  '../assets/githubIcon.png'
+import markerIcon from  '../assets/markerIcon.png'
+import phoneIcon from  '../assets/phoneIcon.png'
 
 const templateUserData = {
     name: 'Your Name',

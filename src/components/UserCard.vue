@@ -12,9 +12,6 @@ const user = userService.user
 
 
 
-
-
-
 onMounted(() => {
     user.value = userService.user.value
    
@@ -37,27 +34,23 @@ onMounted(() => {
                <li class="user-card__contact"  
                     v-for="contact, idx in user.contacts"
                     :key="idx"
-                    :class="contact.title"
-                  
-               >
-                  
-                   <img class="icon" :src="contact.icon" alt="icon">
+                    :class="contact.title">
+
+                    <img class="icon" :src="contact.icon" alt="icon">
                     
                     <div class="desc">
                         <p :class="contact.title+'_title title'"> {{contact.title}}</p>
                         <edit-block 
                             :edit="contact.isEdit"
                             @edit="contact.isEdit = true"
-                            @save="userService.saveContacts(contact)"
-                        >
-                            <template #default>
-                               
-                                <InputText class="input" v-model="contact.text" v-if="contact.isEdit" />
-                                <span :class="contact.title+'_value'" v-else>{{contact.text}}</span>
-                            </template>
-                            <template #icon>
-                                <i class="pi pi-pen-to-square"></i>
-                            </template>
+                            @save="userService.saveContacts(contact)">
+                                <template #default>
+                                    <InputText class="input" v-model="contact.text" v-if="contact.isEdit" />
+                                    <span :class="contact.title+'_value'" v-else>{{contact.text}}</span>
+                                </template>
+                                <template #icon>
+                                    <i class="pi pi-pen-to-square"></i>
+                                </template>
                         </edit-block>
 
                     </div>
