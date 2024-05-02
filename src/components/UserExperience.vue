@@ -7,6 +7,7 @@ import Textarea from 'primevue/textarea';
 import type {IExperience} from '../interfaces/index'
 import { useUserService } from '../composables/useUserService';
 
+
 const userService = useUserService()
 
 const user = userService.user
@@ -22,6 +23,8 @@ const saveData = (exp: IExperience, idx: number) =>{
 
         userService.saveExperience(exp, idx)      
 }
+
+
 
 
 
@@ -66,7 +69,7 @@ const saveData = (exp: IExperience, idx: number) =>{
                                
                             </div>
                             <i class="icon pi pi-pen-to-square"></i>
-                            <Button v-if="exp.isEdit" label="Save" @click="saveData(exp, idx)"></Button>
+                            <Button v-if="exp.isEdit" class="save" label="Save" @click="saveData(exp, idx)"></Button>
                           
                 </li>
                
@@ -184,5 +187,9 @@ hr{
 
 .user-exp__item:not(.is-edit):hover .icon{
     display: block;
+}
+
+.save{
+    padding: 5px 10px;
 }
 </style>

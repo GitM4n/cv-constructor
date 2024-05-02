@@ -50,6 +50,10 @@ body {
   margin: 0;
 }
 
+body.lock{
+  overflow: hidden;
+}
+
 p,
 small,
 span,

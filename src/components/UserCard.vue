@@ -1,20 +1,21 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import EditBlock from './EditBlock.vue';
 import FileUpload from 'primevue/fileupload';
 import InputText from 'primevue/inputtext';
 import UserNameSpec from './UserNameSpec.vue';
 import { useUserService } from '../composables/useUserService';
 
+const props = defineProps<{
+    converting: boolean
+}>()
+
+
 const userService = useUserService()
 
 const user = userService.user
 
 
-onMounted(() => {
-    user.value = userService.user.value
-   
-})
+
 
 </script>
 
@@ -35,7 +36,7 @@ onMounted(() => {
                             @select="userService.saveAvatar($event.files[0])"
                             >Change</FileUpload>
             </div>
-            <UserNameSpec class="isMobile"/>
+            <UserNameSpec class="isMobile" :class="props.converting ? 'isConverting' : ''"/>
             <ul class="user-card__contacts">
             
                <li class="user-card__contact"  
@@ -181,6 +182,7 @@ onMounted(() => {
     outline: none;
 }
 
+
 .isMobile{
     visibility: hidden;
     width: 0;
@@ -188,12 +190,23 @@ onMounted(() => {
     margin: 20px 0;
 }
 
+
 @media (max-width:990px) {
     .isMobile{
         visibility: visible;
         width: auto;
         height: auto;
     }
+
+    .isMobile.isConverting{
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        margin: 20px 0;
+    }
 }
 
+
+
 </style>
+
